@@ -11,14 +11,21 @@ package modelo;
  */
 public class Casilla {
     private int numero;
-    private String casilla;
+    private String mensaje;
+    private CasillasTipos tipo;
+
+    public Casilla(int numero, String casilla, CasillasTipos tipo) {
+        this.numero = numero;
+        this.mensaje = casilla;
+        this.tipo = tipo;
+    }
 
     public Casilla() {
     }
     
     public Casilla(int numero, String casilla) {
         this.numero = numero;
-        this.casilla = casilla;
+        this.mensaje = casilla;
     }
 
     public int getNumero() {
@@ -29,12 +36,12 @@ public class Casilla {
         this.numero = numero;
     }
 
-    public String getCasilla() {
-        return casilla;
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void setCasilla(String casilla) {
-        this.casilla = casilla;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
    
