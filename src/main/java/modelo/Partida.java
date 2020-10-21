@@ -25,7 +25,7 @@ public class Partida {
         numeroJugadores = pedirNumeroJugadores();
         anadirJugadores(numeroJugadores);
 //        mostrarJugadores();
-//        tablero.mostrarTablero();
+        tablero.mostrarTablero();
     }
     
     public int pedirNumeroJugadores() {
@@ -46,13 +46,20 @@ public class Partida {
             entradaNombreJugadores = sc.nextLine();
             jugadores.add(new Jugador(i, entradaNombreJugadores, casillaInicio, i)); 
             System.out.println(jugadores.get(i-1).getNombre() + " se ha unido a la partida.");
+            tablero.asignarJugadorACasilla(jugadores.get(i-1), casillaInicio.getNumero());
         }
     }
     
-    public void mostrarJugadores(){
+    public void mostrarJugadores() {
         for (int i = 0; i < jugadores.size(); i++) {
             System.out.println(jugadores.get(i).toString());
         }
+    }
+    
+    public void moverJugador(Jugador jugador) {
+        int casillaInicial = jugador.getCasillaActiva().getNumero();
+        int casillaDestino = casillaInicial + jugador.tirarDado();
+        jugador.setCasillaActiva(tablero.getCasillasTablero(casillaDestino));
     }
     
 }
