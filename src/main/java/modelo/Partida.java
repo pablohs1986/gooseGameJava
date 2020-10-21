@@ -24,7 +24,7 @@ public class Partida {
         tablero.crearCasillas();
         numeroJugadores = pedirNumeroJugadores();
         anadirJugadores(numeroJugadores);
-        mostrarJugadores();
+//        mostrarJugadores();
 //        tablero.mostrarTablero();
     }
     
@@ -37,15 +37,15 @@ public class Partida {
     }
     
     public void anadirJugadores(int numeroJugadores) {
-        Scanner sc2 = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         String entradaNombreJugadores;
         Casilla casillaInicio = tablero.getCasillasTablero(0);
         
         for (int i = 1; i <= numeroJugadores; i++) {
-            System.out.println("Introduce el nombre de Jugador 1");
-            entradaNombreJugadores = sc2.nextLine();
+            System.out.println("Introduce el nombre de Jugador " + i);
+            entradaNombreJugadores = sc.nextLine();
             jugadores.add(new Jugador(i, entradaNombreJugadores, casillaInicio, i)); 
-            System.out.println(jugadores.get(0).getNombre());
+            System.out.println(jugadores.get(i-1).getNombre() + " se ha unido a la partida.");
         }
     }
     
