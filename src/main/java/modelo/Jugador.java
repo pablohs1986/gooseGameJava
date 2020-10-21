@@ -55,8 +55,9 @@ public class Jugador {
     }
     
         
-    public void tirarDado() {
-        
+    public int tirarDado() {
+        int tirada = (int) (Math.random() + 7);
+        return tirada;
     }
 
     @Override

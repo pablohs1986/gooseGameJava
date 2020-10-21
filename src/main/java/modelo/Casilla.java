@@ -12,13 +12,17 @@ package modelo;
 public class Casilla {
     private int numero;
     private String mensaje;
+    private boolean ocupada;
     private CasillasTipos tipo;
 
-    public Casilla(int numero, String casilla, CasillasTipos tipo) {
+    public Casilla(int numero, String mensaje, boolean ocupada, CasillasTipos tipo) {
         this.numero = numero;
-        this.mensaje = casilla;
+        this.mensaje = mensaje;
+        this.ocupada = ocupada;
         this.tipo = tipo;
     }
+
+    
 
     public Casilla() {
     }
@@ -55,11 +59,21 @@ public class Casilla {
     public void setTipo(CasillasTipos tipo) {
         this.tipo = tipo;
     }
+    
+    public boolean isOcupada() {
+        return ocupada;
+    }
+
+    public void setOcupada(boolean ocupada) {
+        this.ocupada = ocupada;
+    }
 
    
     @Override
     public String toString() {
         return getMensaje();
     }
+
+   
     
 }
