@@ -10,14 +10,24 @@ package modelo;
  * @author Pablo Herrero
  */
 public class Jugador {
+    private int numero;
     private String nombre;
     private Casilla casillaActiva;
     private int turno;
     
-    public Jugador(String nombre, Casilla casillaActiva, int turno) {
+    public Jugador(int numero, String nombre, Casilla casillaActiva, int turno) {
+        this.numero = numero;
         this.nombre = nombre;
         this.casillaActiva = casillaActiva;
         this.turno = turno;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public String getNombre() {
@@ -44,11 +54,15 @@ public class Jugador {
         this.turno = turno;
     }
     
+        
     public void tirarDado() {
         
     }
-    
-    public void moverJugador() {
-        
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "numero=" + numero + ", nombre=" + nombre + ", casillaActiva=" + casillaActiva + ", turno=" + turno + '}';
     }
+
+    
 }

@@ -28,6 +28,10 @@ public class Casilla {
         this.mensaje = casilla;
     }
 
+  
+
+
+
     public int getNumero() {
         return numero;
     }
@@ -44,7 +48,18 @@ public class Casilla {
         this.mensaje = mensaje;
     }
 
+    public CasillasTipos getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(CasillasTipos tipo) {
+        this.tipo = tipo;
+    }
+
    
-    
+    @Override
+    public String toString() {
+        return getMensaje();
+    }
     
 }
