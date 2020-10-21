@@ -15,35 +15,44 @@ import java.util.Scanner;
 public class Partida {
     Tablero tablero = new Tablero();
     ArrayList<Jugador> jugadores = new ArrayList<>();
+    int numeroJugadores;
     
     public Partida() {
     }
     
     public void iniciarPartida() {
-        anadirJugadores();
         tablero.crearCasillas();
-        tablero.mostrarTablero();
+        numeroJugadores = pedirNumeroJugadores();
+        anadirJugadores(numeroJugadores);
+        mostrarJugadores();
+//        tablero.mostrarTablero();
     }
     
-    public void anadirJugadores() {
+    public int pedirNumeroJugadores() {
         Scanner sc = new Scanner(System.in);
         int entradaNumeroJugadores;
-        String entradaNombreJugadores;
-        
-        
         System.out.println("Introducir el número de jugadores:");
         entradaNumeroJugadores = sc.nextInt();
+        return entradaNumeroJugadores;
+    }
+    
+    public void anadirJugadores(int numeroJugadores) {
+        Scanner sc2 = new Scanner(System.in);
+        String entradaNombreJugadores;
+        Casilla casillaInicio = tablero.getCasillasTablero(0);
         
-        for (int i = 1; i <= entradaNumeroJugadores; i++) {
+        for (int i = 1; i <= numeroJugadores; i++) {
             System.out.println("Introduce el nombre de Jugador 1");
-            sc.next();
-            entradaNombreJugadores = sc.nextLine();
-            Casilla casillaInicio = tablero.getCasillasTablero(0);
-            jugadores.add(new Jugador(i, entradaNombreJugadores, casillaInicio, i)); // Seguir aquí
-//            jugadores.add(new Jugador(i, entradaNombreJugadores, tablero.getCasillasTablero(0), 0));
-//            System.out.println(jugadores.get(i).getNombre() + " añadido a la partida");
+            entradaNombreJugadores = sc2.nextLine();
+            jugadores.add(new Jugador(i, entradaNombreJugadores, casillaInicio, i)); 
+            System.out.println(jugadores.get(0).getNombre());
         }
-        
+    }
+    
+    public void mostrarJugadores(){
+        for (int i = 0; i < jugadores.size(); i++) {
+            System.out.println(jugadores.get(i).toString());
+        }
     }
     
 }
