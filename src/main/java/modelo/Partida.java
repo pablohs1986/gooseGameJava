@@ -17,17 +17,39 @@ public class Partida {
     ArrayList<Jugador> jugadores = new ArrayList<>();
     int numeroJugadores;
     int contadorTurnos;
+    boolean finalPartida = false;
+    Scanner sc = new Scanner(System.in);
     
     public Partida() {
     }
     
-    public void iniciarPartida() {
+    public void jugar() {
         tablero.crearCasillasYAnadirATableros();
         numeroJugadores = pedirNumeroJugadores();
         anadirJugadores(numeroJugadores);
 //        mostrarJugadores();
-        tablero.mostrarTablero(jugadores);
-        moverJugador(jugadores.get(1));
+//        tablero.mostrarTablero(jugadores);
+        moverJugador(jugadores.get(0), 0);
+                tablero.mostrarTablero(jugadores);
+                
+        do {   
+            int tiradaDados;
+            contadorTurnos++;
+            System.out.println("***Turno " + contadorTurnos + "***");
+            
+            for (int i = 0; i < jugadores.size(); i++) {
+                System.out.println("Le toca a " + jugadores.get(i).getNombre());
+                System.out.println("Pulsa enter para tirar dados.");
+                sc.nextLine();
+                tiradaDados = jugadores.get(i).tirarDado();
+                System.out.println(jugadores.get(i).getNombre() + "ha sacado un " + tiradaDados);
+                moverJugador(jugadores.get(i), tiradaDados);
+                tablero.mostrarTablero(jugadores);
+                
+            }
+            
+        } while (!finalPartida);
+
     }
     
     public int pedirNumeroJugadores() {
@@ -58,10 +80,25 @@ public class Partida {
         }
     }
     
-    public void moverJugador(Jugador jugador) {
+    public void moverJugador(Jugador jugador, int tiradaDados) {
         int casillaInicial = jugador.getCasillaActiva().getNumero();
-        int casillaDestino = casillaInicial + jugador.tirarDado();
-        jugador.setCasillaActiva(tablero.getCasillasTablero(casillaDestino));
+        int casillaDestino = casillaInicial + tiradaDados;
+//        Casilla casillaDestino = tablero.getCasillasTablero(casillaInicial + jugador.tirarDado());
+
+//        jugador.setCasillaActiva(tablero.getCasillasTablero(casillaDestino));
+        
+        switch(casillaDestino) {
+            case 0:
+                
+                break;
+            case 1:
+                CasillaMovedora casilla1 = (CasillaMovedora) tablero.getCasillasTablero(casillaDestino);
+                jugador.setCasillaActiva(casilla1);
+                casillaDestino = casilla1.deOcaEnOca(casilla1.getNumero());
+                tiradaDados = jugador.tirarDado();
+                moverJugador(jugador, tiradaDados); // Ojo con esto
+                break;
+        }
     }
     
 }
