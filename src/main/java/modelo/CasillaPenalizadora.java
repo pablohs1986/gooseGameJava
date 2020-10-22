@@ -14,9 +14,11 @@ public class CasillaPenalizadora extends Casilla{
     public CasillaPenalizadora() {
     }
 
-    public CasillaPenalizadora(int numero, String casilla) {
-        super(numero, casilla);
+    public CasillaPenalizadora(int numero, String mensaje, boolean ocupada, CasillasTipos tipo) {
+        super(numero, mensaje, ocupada, tipo);
     }
+
+    
     
     public void perderTurnos(Jugador jugador, int turnosPenalizados) {
         int nuevoTurno = jugador.getTurno() - turnosPenalizados;

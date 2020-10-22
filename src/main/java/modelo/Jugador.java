@@ -31,7 +31,7 @@ public class Jugador {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.toUpperCase();
     }
 
     public void setNombre(String nombre) {
@@ -56,7 +56,7 @@ public class Jugador {
     
         
     public int tirarDado() {
-        int tirada = (int) (Math.random() + 7);
+        int tirada = (int) (Math.random() * 7);
         return tirada;
     }
 
