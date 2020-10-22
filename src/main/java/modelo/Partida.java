@@ -16,16 +16,18 @@ public class Partida {
     Tablero tablero = new Tablero();
     ArrayList<Jugador> jugadores = new ArrayList<>();
     int numeroJugadores;
+    int contadorTurnos;
     
     public Partida() {
     }
     
     public void iniciarPartida() {
-        tablero.crearCasillas();
+        tablero.crearCasillasYAnadirATableros();
         numeroJugadores = pedirNumeroJugadores();
         anadirJugadores(numeroJugadores);
 //        mostrarJugadores();
-        tablero.mostrarTablero();
+        tablero.mostrarTablero(jugadores);
+        moverJugador(jugadores.get(1));
     }
     
     public int pedirNumeroJugadores() {
